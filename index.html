@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#170d24">
+<title>Happy Birthday, Birthday Star ✨</title>
+<style>
+:root{--pink:#ff83b7;--gold:#ffdca0;--cream:#fff6ee;--ink:#170d24}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 20% 0%,#4b1d50 0,transparent 45%),radial-gradient(ellipse at 100% 40%,#3b1741 0,transparent 35%),var(--ink);color:var(--cream);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+a{color:inherit}.wrap{width:min(1080px,92%);margin:auto}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0;color:#f8d9eb;font-size:.92rem}
+.logo{font-weight:800;letter-spacing:1px}.pill{border:1px solid #ffffff35;border-radius:99px;padding:8px 13px}
+.hero{min-height:80vh;display:grid;place-items:center;text-align:center;padding:50px 0 65px;position:relative}
+.eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:4px;font-size:.75rem;font-weight:700}
+h1{font-family:Georgia,serif;font-size:clamp(3.2rem,10vw,7.7rem);line-height:.98;margin:20px 0;background:linear-gradient(120deg,#fff4d7,#ff8fbd 55%,#fff);background-clip:text;-webkit-background-clip:text;color:transparent}
+.hero p{font-size:clamp(1rem,2.6vw,1.25rem);line-height:1.8;color:#f2ddea;max-width:620px;margin:20px auto}
+.from{color:var(--gold);font-weight:700;margin-top:24px}.btn{border:0;border-radius:99px;background:linear-gradient(120deg,#ff8fbd,#ffdca0);color:#29132b;font-weight:800;padding:14px 22px;font-size:1rem;cursor:pointer;box-shadow:0 8px 30px #ff83b72b;transition:transform .2s}.btn:hover{transform:translateY(-2px)}
+.sparkle{position:absolute;opacity:.65;animation:float 4s ease-in-out infinite}.s1{left:9%;top:18%;font-size:2rem}.s2{right:9%;top:26%;font-size:2.5rem;animation-delay:1s}.s3{left:16%;bottom:15%;font-size:1.5rem;animation-delay:2s}
+@keyframes float{50%{transform:translateY(-15px) rotate(12deg)}}
+.section{padding:55px 0 70px}.section-head{text-align:center;margin-bottom:30px}.section-head h2{font:clamp(2rem,5vw,3.2rem) Georgia,serif;margin:10px 0;color:#ffe3ee}.section-head p{color:#d9bfd3}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.photo{overflow:hidden;border-radius:22px;border:1px solid #ffffff20;background:#28152e;aspect-ratio:4/5;position:relative;box-shadow:0 15px 40px #0003}.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s;filter:saturate(.95)}.photo:hover img{transform:scale(1.045)}.photo:after{content:"✦";position:absolute;bottom:12px;right:14px;color:#ffe2a0;font-size:1.3rem;text-shadow:0 2px 8px #000}
+.note{max-width:760px;margin:10px auto 0;padding:clamp(24px,5vw,48px);border:1px solid #ffb8d64a;border-radius:28px;background:linear-gradient(135deg,#ffffff0d,#ffb4d50b);text-align:center;box-shadow:0 20px 65px #0002}.note .heart{font-size:2.4rem}.note p{font-size:1.1rem;line-height:2;color:#f6e3ef}.note strong{color:var(--gold)}
+.footer{text-align:center;padding:35px 10px 45px;color:#c9a9c2;font-size:.9rem}.footer b{color:#ff9cc7}
+#surprise{display:none;margin:25px auto 0;max-width:700px;padding:20px;border-radius:18px;background:#ff83b718;border:1px solid #ff83b75c;color:#fff0f7;font-size:1.1rem;line-height:1.8}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:9}
+@media(max-width:700px){.gallery{grid-template-columns:repeat(2,1fr);gap:10px}.hero{min-height:74vh}.s1{left:3%}.s2{right:3%}.photo{border-radius:15px}.section{padding:40px 0 50px}}
+@media(max-width:380px){.gallery{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div class="wrap">
+<nav><div class="logo">✦ A LITTLE MAGIC</div><div class="pill">A special day ♡</div></nav>
+<main>
+<section class="hero">
+<span class="sparkle s1">✧</span><span class="sparkle s2">✦</span><span class="sparkle s3">♡</span>
+<div>
+<div class="eyebrow">Today is all about you</div>
+<h1>Happy<br>Birthday!</h1>
+<p>आज का दिन उतना ही खूबसूरत हो जितनी खूबसूरत आपकी मुस्कान है। ढेर सारी खुशियाँ, प्यार और यादगार पल हमेशा आपके साथ रहें। ✨</p>
+<div class="from">With lots of wishes, <span id="sender">Vishal</span> 💗</div>
+<div style="margin-top:28px"><button class="btn" id="wishBtn">🎁 Open your surprise</button></div>
+<div id="surprise">🌷 जन्मदिन की बहुत-बहुत शुभकामनाएँ! आपकी हर नई सुबह उम्मीद लेकर आए, हर सपना पूरा होने की राह पाए और आपकी ज़िंदगी हमेशा प्यार व खुशियों से रोशन रहे। — <strong id="sender2">Vishal</strong> ✨</div>
+</div></section>
+<section class="section" id="memories">
+<div class="section-head"><div class="eyebrow">Little moments, lovely memories</div><h2>A Gallery Full of Smiles</h2><p>कुछ प्यारी तस्वीरें, इस खास दिन के नाम 💫</p></div>
+<div class="gallery">
+<figure class="photo"><img src="photos/photo-1.jpg" alt="Birthday memories photo 1" loading="lazy"></figure>
+<figure class="photo"><img src="photos/photo-2.jpg" alt="Birthday memories photo 2" loading="lazy"></figure>
+<figure class="photo"><img src="photos/photo-3.jpg" alt="Birthday memories photo 3" loading="lazy"></figure>
+<figure class="photo"><img src="photos/photo-4.jpg" alt="Birthday memories photo 4" loading="lazy"></figure>
+<figure class="photo"><img src="photos/photo-5.jpg" alt="Birthday memories photo 5" loading="lazy"></figure>
+<figure class="photo"><img src="photos/photo-6.jpg" alt="Birthday memories photo 6" loading="lazy"></figure>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><div class="eyebrow">A message from the heart</div><h2>One Special Wish</h2></div>
+<div class="note"><div class="heart">💖</div><p>दुआ है कि आपकी ज़िंदगी में हमेशा <strong>खुशियों के रंग</strong> रहें, चेहरे पर मुस्कान रहे और आपको हर कदम पर अच्छे लोग व नए मौके मिलें। आज खूब मुस्कुराइए—क्योंकि आज का दिन आपके लिए है! 🎂</p><div class="from">— Yours, <span id="sender3">Vishal</span></div></div>
+</section>
+</main>
+<footer class="footer">Made with <b>♡</b> and a little sparkle · Birthday wishes from <b>Vishal</b></footer>
+</div>
+<script>
+const SENDER = "Vishal";
+// Birthday person's name can be added here later if you want it shown on the page.
+document.getElementById("sender").textContent = SENDER;
+document.getElementById("sender2").textContent = SENDER;
+document.getElementById("sender3").textContent = SENDER;
+const btn=document.getElementById("wishBtn"), surprise=document.getElementById("surprise");
+btn.addEventListener("click",()=>{surprise.style.display="block";btn.textContent="💖 Surprise opened!";burst();surprise.scrollIntoView({behavior:"smooth",block:"center"});});
+const canvas=document.getElementById("confetti"),ctx=canvas.getContext("2d");let bits=[],running=false;
+function resize(){canvas.width=innerWidth*devicePixelRatio;canvas.height=innerHeight*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}
+addEventListener("resize",resize);resize();
+function burst(){bits=[];for(let i=0;i<150;i++)bits.push({x:innerWidth/2,y:innerHeight*.4,vx:(Math.random()-.5)*9,vy:Math.random()*-9-2,g:.16,size:Math.random()*7+3,life:100,h:Math.random()*360});if(!running){running=true;draw()}}
+function draw(){ctx.clearRect(0,0,innerWidth,innerHeight);bits=bits.filter(b=>b.life-->0&&b.y<innerHeight+30);for(const b of bits){b.x+=b.vx;b.y+=b.vy;b.vy+=b.g;ctx.fillStyle=`hsl(${b.h},90%,72%)`;ctx.fillRect(b.x,b.y,b.size,b.size*1.4)}if(bits.length)requestAnimationFrame(draw);else{running=false;ctx.clearRect(0,0,innerWidth,innerHeight)}}
+</script>
+</body></html>
