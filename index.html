@@ -1,199 +1,494 @@
+
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Prachi ✨ Crafted by Vishal</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .font-cinzel { font-family: 'Cinzel', serif; }
-        .font-script { font-family: 'Great Vibes', cursive; }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(3deg); }
-        }
-        .floating-heart { animation: float 4s ease-in-out infinite; }
-        .glass-card {
-            background: rgba(20, 20, 20, 0.75);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(236, 72, 153, 0.2);
-        }
-        .glow-text { text-shadow: 0 0 25px rgba(236, 72, 153, 0.7); }
-        .glow-box { box-shadow: 0 0 40px rgba(236, 72, 153, 0.15); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0b0e">
+<title>Happy Birthday Prachi ✨ | Crafted by Vishal</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Plus Jakarta Sans',sans-serif; }
+.font-cinzel { font-family:'Cinzel',serif; }
+.font-script { font-family:'Great Vibes',cursive; }
+
+.glass-card {
+ background:rgba(20,20,25,.78);
+ backdrop-filter:blur(16px);
+ border:1px solid rgba(236,72,153,.25);
+}
+.glow-text { text-shadow:0 0 25px rgba(236,72,153,.65); }
+.glow-box { box-shadow:0 0 35px rgba(236,72,153,.14); }
+
+@keyframes float {
+ 0%,100% {transform:translateY(0) rotate(0);}
+ 50% {transform:translateY(-14px) rotate(4deg);}
+}
+@keyframes sparkle {
+ 0%,100% {opacity:.35;transform:scale(.8);}
+ 50% {opacity:1;transform:scale(1.15);}
+}
+@keyframes pop {
+ from {opacity:0;transform:scale(.7);}
+ to {opacity:1;transform:scale(1);}
+}
+.floating-heart { animation:float 4s ease-in-out infinite; }
+.sparkle { animation:sparkle 2s infinite; }
+.gallery-img {
+ width:100%; height:100%; object-fit:cover;
+ transition:transform .6s ease,filter .4s ease;
+}
+.gallery-card { overflow:hidden; cursor:pointer; }
+.gallery-card:hover .gallery-img {
+ transform:scale(1.08); filter:brightness(1.08);
+}
+.gallery-card:focus-visible,button:focus-visible {
+ outline:2px solid #f9a8d4; outline-offset:4px;
+}
+#lightbox { animation:pop .25s ease; }
+#musicOverlay { background:rgba(8,5,14,.96); }
+#musicOverlay.hidden { display:none; }
+@media(prefers-reduced-motion:reduce) {
+ *,*::before,*::after {
+  animation-duration:.01ms!important;
+  transition-duration:.01ms!important;
+  scroll-behavior:auto!important;
+ }
+}
+</style>
 </head>
-<body class="bg-[#0b0b0e] text-pink-50 min-h-screen overflow-x-hidden selection:bg-pink-500 selection:text-white">
 
-    <!-- Ambient Background Lighting -->
-    <div class="fixed top-0 left-1/4 w-[500px] h-[500px] bg-pink-600/10 rounded-full blur-[150px] pointer-events-none"></div>
-    <div class="fixed bottom-0 right-1/4 w-[500px] h-[500px] bg-rose-600/10 rounded-full blur-[150px] pointer-events-none"></div>
+<body class="bg-[#0b0b0e] text-pink-50 min-h-screen overflow-x-hidden">
 
-    <!-- Header Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-pink-500/10 px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center space-x-2">
-            <span class="text-2xl">👑</span>
-            <span class="font-cinzel tracking-wider text-sm md:text-base font-bold bg-gradient-to-r from-pink-400 to-rose-300 bg-clip-text text-transparent">PRACHI'S SPECIAL DAY</span>
-        </div>
-        <div class="flex items-center space-x-4">
-            <span class="text-xs tracking-widest text-pink-300/70 uppercase hidden md:inline">Made with ❤️ by Vishal</span>
-            <button onclick="toggleMusic()" id="musicBtn" class="bg-pink-600/30 hover:bg-pink-600/50 border border-pink-500/40 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider transition-all duration-300 flex items-center gap-2">
-                <span>🎵</span> <span id="musicText">Play Music</span>
-            </button>
-        </div>
-    </header>
+<div class="fixed -top-20 left-1/4 w-96 h-96 bg-pink-600/10 rounded-full blur-[130px] pointer-events-none"></div>
+<div class="fixed bottom-0 right-1/4 w-96 h-96 bg-rose-600/10 rounded-full blur-[130px] pointer-events-none"></div>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-24 pb-16">
-        <div class="absolute top-12 text-pink-500/20 text-7xl md:text-9xl font-script floating-heart pointer-events-none">Happy Birthday</div>
-        
-        <div class="relative z-10 max-w-4xl mx-auto space-y-6">
-            <div class="inline-block px-5 py-2 rounded-full glass-card border border-pink-500/30 text-pink-300 text-xs md:text-sm tracking-widest uppercase mb-2">
-                ✨ Exclusive 50k Luxury Tribute by Vishal ✨
-            </div>
-            
-            <h1 class="text-5xl md:text-8xl font-cinzel font-bold tracking-tight bg-gradient-to-r from-white via-pink-200 to-pink-400 bg-clip-text text-transparent glow-text">
-                Happy Birthday, Prachi!
-            </h1>
-            
-            <p class="text-xl md:text-3xl text-pink-200/90 font-script font-light">
-                "To the most radiant soul who turns every moment into pure magic."
-            </p>
+<!-- MUSIC START SCREEN -->
+<div id="musicOverlay" class="fixed inset-0 z-[100] flex items-center justify-center p-6 text-center">
+ <div class="max-w-md w-full glass-card rounded-3xl p-8 md:p-12 glow-box">
+  <div class="text-6xl mb-5 floating-heart">🎂</div>
+  <p class="text-pink-400 text-xs tracking-[.3em] uppercase mb-4">A Special Surprise</p>
+  <h2 class="font-cinzel text-3xl md:text-4xl font-bold mb-4">For Prachi ✨</h2>
+  <p class="text-pink-200/80 mb-7 leading-7">
+   A little birthday magic, beautiful memories and music made for your special day.
+  </p>
+  <button onclick="startCelebration()"
+   class="w-full bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 px-7 py-4 rounded-full font-semibold shadow-lg shadow-pink-600/30">
+   🎵 Tap to Celebrate
+  </button>
+  <p class="text-pink-300/50 text-xs mt-4">Turn up your volume for the surprise</p>
+ </div>
+</div>
 
-            <div class="pt-6 flex flex-wrap justify-center gap-4">
-                <a href="#tribute" class="bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white font-medium px-8 py-3.5 rounded-full shadow-lg shadow-pink-600/30 transition-all transform hover:-scale-105">
-                    Explore Luxury Tribute ✨
-                </a>
-                <a href="#cake" class="glass-card hover:bg-pink-950/40 text-pink-200 font-medium px-8 py-3.5 rounded-full border border-pink-500/30 transition-all">
-                    Cut the Cake 🎂
-                </a>
-            </div>
-        </div>
-    </section>
-        <!-- Luxury Tribute Cards Section -->
-    <section id="tribute" class="py-24 px-4 max-w-6xl mx-auto">
-        <div class="text-center space-y-3 mb-16">
-            <h2 class="text-3xl md:text-5xl font-cinzel font-bold text-pink-100">The Essence of Prachi</h2>
-            <p class="text-pink-300/70 text-sm md:text-base">Curated with perfection and heartfelt dedication by Vishal</p>
-        </div>
+<!-- HEADER -->
+<header class="sticky top-0 z-50 glass-card border-b border-pink-500/10 px-4 md:px-6 py-4 flex justify-between items-center gap-3">
+ <a href="#home" class="flex items-center gap-2 min-w-0">
+  <span class="text-2xl">👑</span>
+  <span class="font-cinzel tracking-wider text-xs md:text-base font-bold bg-gradient-to-r from-pink-400 to-rose-300 bg-clip-text text-transparent">
+   PRACHI'S SPECIAL DAY
+  </span>
+ </a>
+ <button onclick="toggleMusic()" id="musicBtn"
+  class="shrink-0 bg-pink-600/20 hover:bg-pink-600/40 border border-pink-500/40 px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-2">
+  <span id="musicIcon">🎵</span><span id="musicText">Play Music</span>
+ </button>
+</header>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="glass-card glow-box p-8 rounded-3xl border border-pink-500/30 text-center space-y-4 hover:border-pink-500/60 transition-all duration-300">
-                <div class="text-5xl">👑</div>
-                <h3 class="font-cinzel text-xl font-bold text-pink-200">Timeless Elegance</h3>
-                <p class="text-pink-300/80 text-sm font-light">A classy charm and graceful aura that effortlessly illuminates any room she enters.</p>
-            </div>
+<!-- HERO -->
+<section id="home" class="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-4 pt-20 pb-16">
+ <div class="absolute top-12 text-pink-500/15 text-6xl md:text-9xl font-script floating-heart pointer-events-none">
+  Happy Birthday
+ </div>
+ <div class="relative z-10 max-w-4xl mx-auto">
+  <div class="inline-block px-5 py-2 rounded-full glass-card border border-pink-500/30 text-pink-300 text-xs md:text-sm tracking-widest uppercase mb-7">
+   ✨ A Luxury Birthday Tribute ✨
+  </div>
+  <h1 class="text-4xl sm:text-5xl md:text-8xl font-cinzel font-bold leading-tight bg-gradient-to-r from-white via-pink-200 to-pink-400 bg-clip-text text-transparent glow-text">
+   Happy Birthday,<br>Prachi!
+  </h1>
+  <p class="text-2xl md:text-4xl text-pink-200 mt-7 font-script">
+   A beautiful soul deserves a magical day.
+  </p>
+  <p class="max-w-2xl mx-auto mt-5 text-sm md:text-base text-pink-100/65 leading-7">
+   In a universe full of stars, today shines a little brighter because it is your special day.
+  </p>
+  <div class="mt-9 flex flex-wrap justify-center gap-4">
+   <a href="#gallery" class="bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 px-7 py-3.5 rounded-full font-medium shadow-lg shadow-pink-600/25">
+    Explore Photo Gallery ✨
+   </a>
+   <a href="#cake" class="glass-card hover:bg-pink-950/40 px-7 py-3.5 rounded-full border border-pink-500/30">
+    Cut the Cake 🎂
+   </a>
+  </div>
+ </div>
+</section>
 
-            <div class="glass-card glow-box p-8 rounded-3xl border border-pink-500/30 text-center space-y-4 hover:border-pink-500/60 transition-all duration-300">
-                <div class="text-5xl floating-heart">💖</div>
-                <h3 class="font-cinzel text-xl font-bold text-pink-200">Golden Heart</h3>
-                <p class="text-pink-300/80 text-sm font-light">Filled with warmth, genuine kindness, and spreading happiness all around.</p>
-            </div>
+<!-- PHOTO GALLERY -->
+<section id="gallery" class="py-20 px-4 max-w-6xl mx-auto">
+ <div class="text-center mb-12">
+  <p class="text-pink-400 text-xs tracking-[.3em] uppercase mb-3">Beautiful Moments</p>
+  <h2 class="text-3xl md:text-5xl font-cinzel font-bold">Prachi's Gallery</h2>
+  <p class="text-pink-200/60 text-sm mt-4">Tap any picture to view it larger ✨</p>
+ </div>
 
-            <div class="glass-card glow-box p-8 rounded-3xl border border-pink-500/30 text-center space-y-4 hover:border-pink-500/60 transition-all duration-300">
-                <div class="text-5xl">✨</div>
-                <h3 class="font-cinzel text-xl font-bold text-pink-200">Magical Smile</h3>
-                <p class="text-pink-300/80 text-sm font-light">A smile so bright it can instantly turn the gloomiest day into sunshine.</p>
-            </div>
-        </div>
-    </section>
+ <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
 
-    <!-- Vishal's Personal Letter Section -->
-    <section class="py-12 px-4 max-w-4xl mx-auto">
-        <div class="glass-card p-8 md:p-12 rounded-3xl border border-pink-500/30 relative overflow-hidden shadow-2xl">
-            <div class="absolute top-0 right-0 p-8 text-pink-500/10 text-9xl font-script pointer-events-none"> Vishal </div>
-            <div class="relative z-10 space-y-6">
-                <div class="inline-flex items-center space-x-2 text-pink-400 text-sm tracking-widest uppercase">
-                    <span>💌</span>
-                    <span>A Special Note From Vishal</span>
-                </div>
-                <h3 class="text-3xl md:text-4xl font-cinzel font-bold text-white">Dearest Prachi,</h3>
-                <p class="text-pink-100/90 leading-relaxed text-base md:text-lg font-light">
-                    On your special day, I wanted to build something exceptional just for you. Having you bring so much positivity and joy into this world is a true blessing. May this year shower you with immense success, endless laughter, and boundless love. Happy Birthday, Prachi! ✨
-                </p>
-                <div class="pt-4 flex items-center justify-between border-t border-pink-500/20">
-                    <span class="font-script text-2xl text-pink-300">Wishing you all the happiness,</span>
-                    <span class="font-cinzel font-bold tracking-wider text-pink-400">— Vishal</span>
-                </div>
-            </div>
-        </div>
-    </section>
+  <button class="gallery-card glass-card rounded-2xl aspect-[3/4] relative"
+   onclick="openPhoto(0)" aria-label="Open birthday roses photo">
+   <img class="gallery-img" loading="lazy"
+    src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=85"
+    alt="Beautiful pink flowers">
+   <span class="absolute bottom-0 inset-x-0 p-3 text-left bg-gradient-to-t from-black/80 to-transparent text-sm">🌸 Blooming Beauty</span>
+  </button>
 
-    <!-- Interactive Cake Cutting Section -->
-    <section id="cake" class="py-24 px-4 text-center max-w-2xl mx-auto">
-        <div class="glass-card p-10 rounded-3xl border border-pink-500/30 space-y-6 shadow-2xl">
-            <h3 class="text-2xl md:text-4xl font-cinzel font-bold text-pink-100">Cut Your Virtual Birthday Cake! 🎂</h3>
-            <p class="text-pink-300/80 text-sm">Click below to blow out the candles and lock in your birthday wish!</p>
-            
-            <div id="cakeDisplay" class="text-8xl py-6 transition-all duration-500">
-                🎂🔥
-            </div>
+  <button class="gallery-card glass-card rounded-2xl aspect-[3/4] relative"
+   onclick="openPhoto(1)" aria-label="Open pink birthday cake photo">
+   <img class="gallery-img" loading="lazy"
+    src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=800&q=85"
+    alt="Birthday celebration decorations">
+   <span class="absolute bottom-0 inset-x-0 p-3 text-left bg-gradient-to-t from-black/80 to-transparent text-sm">🎉 Celebration</span>
+  </button>
 
-            <button onclick="cutCake()" id="cakeBtn" class="bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white font-semibold px-8 py-3.5 rounded-full shadow-lg shadow-pink-600/30 transition-all">
-                Make a Wish & Cut Cake ✨
-            </button>
-            <p id="wishMessage" class="text-pink-300 font-script text-3xl hidden pt-2">Make a wish, Prachi! May all your dreams come true! 🌟</p>
-        </div>
-    </section>
+  <button class="gallery-card glass-card rounded-2xl aspect-[3/4] relative"
+   onclick="openPhoto(2)" aria-label="Open rose flowers photo">
+   <img class="gallery-img" loading="lazy"
+    src="https://images.unsplash.com/photo- roses?auto=format&fit=crop&w=800&q=85"
+    alt="Romantic rose flowers">
+   <span class="absolute bottom-0 inset-x-0 p-3 text-left bg-gradient-to-t from-black/80 to-transparent text-sm">🌹 Pretty in Pink</span>
+  </button>
 
-    <!-- Footer -->
-    <footer class="py-8 text-center border-t border-pink-500/10 text-xs text-pink-400/60 tracking-wider">
-        <p>© 2026 Crafted with elite design and love by <span class="text-pink-400 font-bold">Vishal</span> for <span class="text-pink-400 font-bold">Prachi</span> ❤️</p>
-    </footer>
+  <button class="gallery-card glass-card rounded-2xl aspect-[3/4] relative"
+   onclick="openPhoto(3)" aria-label="Open flower bouquet photo">
+   <img class="gallery-img" loading="lazy"
+    src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=800&q=85"
+    alt="Elegant flowers and bouquet">
+   <span class="absolute bottom-0 inset-x-0 p-3 text-left bg-gradient-to-t from-black/80 to-transparent text-sm">💐 Special Wishes</span>
+  </button>
 
-    <!-- JavaScript Part -->
-    <script>
-        function cutCake() {
-            const cakeDisplay = document.getElementById('cakeDisplay');
-            const cakeBtn = document.getElementById('cakeBtn');
-            const wishMessage = document.getElementById('wishMessage');
-            
-            cakeDisplay.innerHTML = "🍰✨🎉";
-            cakeBtn.style.display = 'none';
-            wishMessage.classList.remove('hidden');
+  <button class="gallery-card glass-card rounded-2xl aspect-[3/4] relative"
+   onclick="openPhoto(4)" aria-label="Open pink floral decoration photo">
+   <img class="gallery-img" loading="lazy"
+    src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=800&q=85"
+    alt="Soft pink floral arrangement">
+   <span class="absolute bottom-0 inset-x-0 p-3 text-left bg-gradient-to-t from-black/80 to-transparent text-sm">✨ Pure Magic</span>
+  </button>
 
-            for(let i=0; i<4; i++) {
-                setTimeout(() => {
-                    createFloatingHeart();
-                }, i * 250);
-            }
-        }
+  <button class="gallery-card glass-card rounded-2xl aspect-[3/4] relative"
+   onclick="openPhoto(5)" aria-label="Open celebration lights photo">
+   <img class="gallery-img" loading="lazy"
+    src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=800&q=85"
+    alt="Elegant party celebration">
+   <span class="absolute bottom-0 inset-x-0 p-3 text-left bg-gradient-to-t from-black/80 to-transparent text-sm">🎂 Birthday Memories</span>
+  </button>
 
-        function createFloatingHeart() {
-            const heart = document.createElement('div');
-            heart.innerHTML = '💖';
-            heart.style.position = 'fixed';
-            heart.style.left = Math.random() * window.innerWidth + 'px';
-            heart.style.bottom = '100px';
-            heart.style.fontSize = '2.5rem';
-            heart.style.zIndex = '9999';
-            heart.style.transition = 'all 2s ease-out';
-            document.body.appendChild(heart);
+ </div>
+ <p class="text-center text-pink-300/40 text-xs mt-5">Decorative photos • Replace with your own pictures whenever you like.</p>
+</section>
 
-            setTimeout(() => {
-                heart.style.transform = 'translateY(-350px) scale(1.6)';
-                heart.style.opacity = '0';
-            }, 50);
+<!-- PHOTO LIGHTBOX -->
+<div id="lightbox" class="hidden fixed inset-0 z-[80] bg-black/95 p-4 items-center justify-center"
+ style="display:none" onclick="closePhoto()">
+ <button class="absolute top-5 right-5 text-white text-3xl" aria-label="Close photo">×</button>
+ <img id="lightboxImg" src="" alt="Enlarged gallery photo"
+  class="max-w-full max-h-[85vh] object-contain rounded-xl"
+  onclick="event.stopPropagation()">
+</div>
 
-            setTimeout(() => {
-                heart.remove();
-            }, 2000);
-        }
+<!-- TRIBUTE CARDS -->
+<section id="tribute" class="py-20 px-4 max-w-6xl mx-auto">
+ <div class="text-center mb-12 space-y-3">
+  <h2 class="text-3xl md:text-5xl font-cinzel font-bold">The Essence of Prachi</h2>
+  <p class="text-pink-300/70 text-sm">A little celebration of everything wonderful</p>
+ </div>
+ <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div class="glass-card glow-box p-8 rounded-3xl text-center space-y-4">
+   <div class="text-5xl">👑</div>
+   <h3 class="font-cinzel text-xl font-bold text-pink-200">Timeless Elegance</h3>
+   <p class="text-pink-300/80 text-sm leading-6">May your days always shine with grace, confidence and beautiful possibilities.</p>
+  </div>
+  <div class="glass-card glow-box p-8 rounded-3xl text-center space-y-4">
+   <div class="text-5xl floating-heart">💖</div>
+   <h3 class="font-cinzel text-xl font-bold text-pink-200">Golden Heart</h3>
+   <p class="text-pink-300/80 text-sm leading-6">May kindness and happiness find their way back to you every single day.</p>
+  </div>
+  <div class="glass-card glow-box p-8 rounded-3xl text-center space-y-4">
+   <div class="text-5xl sparkle">✨</div>
+   <h3 class="font-cinzel text-xl font-bold text-pink-200">Magical Smile</h3>
+   <p class="text-pink-300/80 text-sm leading-6">May the coming year bring laughter, new adventures and wonderful memories.</p>
+  </div>
+ </div>
+</section>
 
-        let isPlaying = false;
-        function toggleMusic() {
-            const musicBtn = document.getElementById('musicBtn');
-            const musicText = document.getElementById('musicText');
-            isPlaying = !isPlaying;
-            if(isPlaying) {
-                musicText.innerText = "Playing 🎶";
-                musicBtn.classList.add('bg-pink-600/60');
-            } else {
-                musicText.innerText = "Play Music";
-                musicBtn.classList.remove('bg-pink-600/60');
-            }
-        }
-    </script>
+<!-- PERSONAL LETTER -->
+<section class="py-12 px-4 max-w-4xl mx-auto">
+ <div class="glass-card p-7 md:p-12 rounded-3xl relative overflow-hidden glow-box">
+  <div class="absolute top-0 right-0 p-5 text-pink-500/10 text-7xl md:text-9xl font-script pointer-events-none">Vishal</div>
+  <div class="relative z-10 space-y-6">
+   <div class="text-pink-400 text-sm tracking-widest uppercase">💌 A Special Note From Vishal</div>
+   <h3 class="text-3xl md:text-4xl font-cinzel font-bold">Dearest Prachi,</h3>
+   <p class="text-pink-100/90 leading-8 text-base md:text-lg font-light">
+    On your special day, I wanted to create something beautiful just for you.
+    May this new year of your life bring you happiness, confidence, success,
+    unforgettable adventures and countless reasons to smile.
+    Keep shining in your own special way. Happy Birthday, Prachi! ✨
+   </p>
+   <div class="pt-5 flex flex-wrap items-center justify-between gap-3 border-t border-pink-500/20">
+    <span class="font-script text-2xl text-pink-300">Wishing you all the happiness,</span>
+    <span class="font-cinzel font-bold tracking-wider text-pink-400">— Vishal</span>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- CAKE CUTTING -->
+<section id="cake" class="py-20 px-4 text-center max-w-2xl mx-auto">
+ <div class="glass-card p-7 md:p-10 rounded-3xl border border-pink-500/30 space-y-6 glow-box">
+  <p class="text-pink-400 text-xs tracking-[.3em] uppercase">Make a Wish</p>
+  <h3 class="text-2xl md:text-4xl font-cinzel font-bold">Your Birthday Cake 🎂</h3>
+  <p class="text-pink-300/80 text-sm">Close your eyes, make a wish and celebrate!</p>
+  <div id="cakeDisplay" class="text-8xl py-6 transition-all duration-500">🎂🕯️</div>
+  <button onclick="cutCake()" id="cakeBtn"
+   class="bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 px-8 py-4 rounded-full font-semibold shadow-lg shadow-pink-600/30">
+   Make a Wish & Cut Cake ✨
+  </button>
+  <p id="wishMessage" class="text-pink-300 font-script text-3xl pt-2" style="display:none">
+   Happy Birthday, Prachi! May your dreams come true! 🌟
+  </p>
+ </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-8 px-4 text-center border-t border-pink-500/10 text-xs text-pink-400/60 tracking-wider">
+ <p>© 2026 Crafted with care by <span class="text-pink-400 font-bold">Vishal</span> for <span class="text-pink-400 font-bold">Prachi</span> ❤️</p>
+ <p class="mt-2">Made to make your birthday a little more magical ✨</p>
+</footer>
+
+<!-- PART 2 GOES HERE -->
+</body>
+    </html>
+      
+<script>
+/* BIRTHDAY GALLERY */
+const galleryPhotos = [
+ "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1200&q=90",
+ "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1200&q=90",
+ "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=1200&q=90",
+ "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1200&q=90",
+ "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=1200&q=90",
+ "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=90"
+];
+
+function openPhoto(index) {
+ const box = document.getElementById("lightbox");
+ const img = document.getElementById("lightboxImg");
+ img.src = galleryPhotos[index];
+ box.style.display = "flex";
+ box.classList.remove("hidden");
+ document.body.style.overflow = "hidden";
+}
+
+function closePhoto() {
+ const box = document.getElementById("lightbox");
+ box.style.display = "none";
+ box.classList.add("hidden");
+ document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", function(e) {
+ if (e.key === "Escape") closePhoto();
+});
+
+/* BIRTHDAY INSTRUMENTAL MUSIC
+   Creates an original celebratory melody in the browser.
+   No external audio file is required. */
+
+let audioContext = null;
+let musicPlaying = false;
+let musicTimer = null;
+let nextNoteTime = 0;
+let noteIndex = 0;
+
+const melody = [
+ 523.25, 659.25, 783.99, 659.25,
+ 587.33, 698.46, 880.00, 698.46,
+ 659.25, 783.99, 987.77, 783.99,
+ 698.46, 659.25, 587.33, 523.25,
+ 659.25, 783.99, 880.00, 987.77,
+ 880.00, 783.99, 698.46, 659.25
+];
+
+function playNote(frequency, time, duration) {
+ if (!audioContext || audioContext.state !== "running") return;
+
+ const osc = audioContext.createOscillator();
+ const gain = audioContext.createGain();
+
+ osc.type = "sine";
+ osc.frequency.setValueAtTime(frequency, time);
+
+ gain.gain.setValueAtTime(0.0001, time);
+ gain.gain.exponentialRampToValueAtTime(0.12, time + 0.025);
+ gain.gain.setTargetAtTime(0.0001, time + duration * 0.65, 0.08);
+
+ osc.connect(gain);
+ gain.connect(audioContext.destination);
+
+ osc.start(time);
+ osc.stop(time + duration);
+}
+
+function scheduleMusic() {
+ if (!musicPlaying || !audioContext) return;
+
+ while (nextNoteTime < audioContext.currentTime + 0.5) {
+  const frequency = melody[noteIndex % melody.length];
+
+  playNote(frequency, nextNoteTime, 0.38);
+
+  // A soft harmony note adds a celebratory feel.
+  if (noteIndex % 4 === 0) {
+   playNote(frequency / 2, nextNoteTime, 0.48);
+  }
+
+  nextNoteTime += 0.32;
+  noteIndex++;
+ }
+
+ musicTimer = setTimeout(scheduleMusic, 120);
+}
+
+async function startMusic() {
+ try {
+  const AudioContextClass =
+   window.AudioContext || window.webkitAudioContext;
+
+  if (!AudioContextClass) {
+   alert("Audio is not supported by this browser.");
+   return;
+  }
+
+  if (!audioContext) {
+   audioContext = new AudioContextClass();
+  }
+
+  await audioContext.resume();
+
+  if (musicPlaying) return;
+
+  musicPlaying = true;
+  nextNoteTime = audioContext.currentTime + 0.08;
+
+  updateMusicButton();
+  scheduleMusic();
+ } catch (error) {
+  console.error("Music could not start:", error);
+  alert("Please tap the music button again to enable audio.");
+ }
+}
+
+function stopMusic() {
+ musicPlaying = false;
+ clearTimeout(musicTimer);
+ updateMusicButton();
+}
+
+function toggleMusic() {
+ if (musicPlaying) {
+  stopMusic();
+ } else {
+  startMusic();
+ }
+}
+
+function updateMusicButton() {
+ const text = document.getElementById("musicText");
+ const icon = document.getElementById("musicIcon");
+ const btn = document.getElementById("musicBtn");
+
+ text.textContent = musicPlaying ? "Pause Music" : "Play Music";
+ icon.textContent = musicPlaying ? "🎶" : "🎵";
+
+ btn.classList.toggle("bg-pink-600/60", musicPlaying);
+}
+
+async function startCelebration() {
+ const overlay = document.getElementById("musicOverlay");
+
+ // Start audio from the visitor's button tap.
+ await startMusic();
+
+ // Reveal the website even if audio is blocked.
+ overlay.classList.add("hidden");
+
+ // Keep the overlay hidden after removing it visually.
+ overlay.style.display = "none";
+
+ launchConfettiHearts();
+}
+
+/* FLOATING HEARTS */
+function createFloatingHeart() {
+ const heart = document.createElement("div");
+ const hearts = ["💖", "💕", "💗", "✨", "🌸"];
+
+ heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+ heart.style.position = "fixed";
+ heart.style.left = Math.random() * 100 + "vw";
+ heart.style.bottom = "-30px";
+ heart.style.fontSize = (20 + Math.random() * 24) + "px";
+ heart.style.zIndex = "90";
+ heart.style.pointerEvents = "none";
+ heart.style.transition = "transform 3s ease-out, opacity 3s ease-out";
+
+ document.body.appendChild(heart);
+
+ requestAnimationFrame(() => {
+  heart.style.transform =
+   "translateY(-" + (window.innerHeight + 100) +
+   "px) rotate(" + (Math.random() * 60 - 30) + "deg)";
+  heart.style.opacity = "0";
+ });
+
+ setTimeout(() => heart.remove(), 3100);
+}
+
+function launchConfettiHearts() {
+ for (let i = 0; i < 14; i++) {
+  setTimeout(createFloatingHeart, i * 180);
+ }
+}
+
+/* VIRTUAL CAKE CUTTING */
+let cakeCut = false;
+
+function cutCake() {
+ if (cakeCut) return;
+ cakeCut = true;
+
+ const cake = document.getElementById("cakeDisplay");
+ const btn = document.getElementById("cakeBtn");
+ const message = document.getElementById("wishMessage");
+
+ cake.textContent = "🍰✨🎉";
+ cake.style.transform = "scale(1.15)";
+
+ btn.style.display = "none";
+ message.style.display = "block";
+
+ for (let i = 0; i < 18; i++) {
+  setTimeout(createFloatingHeart, i * 140);
+ }
+
+ // Start music if it has not already started.
+ if (!musicPlaying) {
+  startMusic();
+ }
+}
+</script>
 </body>
 </html>
