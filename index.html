@@ -1,87 +1,297 @@
-
+```html
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en" class="dark scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#100d24">
-  <title>Happy Birthday | From Vishal</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Prachi ✨ Grand Midnight Pink Galaxy Edition | By Vishal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cinzel, Plus Jakarta Sans, & Alex Brush -->
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti for Celebration Effects -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        midnight: '#050205',
+                        galaxyDark: '#120710',
+                        pinkAccent: '#f43f5e',
+                        roseGold: '#fb7185',
+                    },
+                    fontFamily: {
+                        cinzel: ['"Cinzel"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        brush: ['"Alex Brush"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #050205;
+            color: #fce7f3;
+            overflow-x: hidden;
+        }
+        .galaxy-gradient {
+            background: radial-gradient(circle at 50% 25%, #3b1128 0%, #150612 50%, #050205 100%);
+        }
+        .glass-card {
+            background: rgba(30, 15, 25, 0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(244, 63, 94, 0.25);
+            box-shadow: 0 0 50px rgba(244, 63, 94, 0.1);
+        }
+        .pink-glow {
+            text-shadow: 0 0 35px rgba(244, 63, 94, 0.6);
+        }
+        .pink-gradient-text {
+            background: linear-gradient(135deg, #ffffff 20%, #f43f5e 70%, #fb7185 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.1; transform: scale(0.6); }
+            50% { opacity: 1; transform: scale(1.4); }
+        }
+        .star {
+            position: absolute;
+            background: #ffe4e6;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+        .floating-badge {
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050205;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b1128;
+            border-radius: 4px;
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <div class="logo">✦ BIRTHDAY MAGIC</div>
-    <div class="sender">A surprise from Vishal 💛</div>
-  </header>
+<body class="galaxy-gradient min-h-screen relative selection:bg-pink-500 selection:text-white">
 
-  <main>
-    <section class="hero">
-      <span class="badge">✨ TODAY IS YOUR SPECIAL DAY ✨</span>
-      <h1>Happy Birthday!</h1>
-      <p class="subtitle">
-        Aaj ka din khushiyon, pyaar aur khoobsurat yaadon se bhar jaaye.
-      </p>
+    <!-- Starry Night Background Layer -->
+    <div id="starsContainer" class="fixed inset-0 pointer-events-none z-0"></div>
 
-      <div class="cake">🎂</div>
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-card px-6 sm:px-10 py-4 flex justify-between items-center border-b border-pink-500/15">
+        <div class="flex items-center space-x-3">
+            <span class="text-2xl floating-badge">💖</span>
+            <div>
+                <span class="font-cinzel tracking-wider text-sm sm:text-base font-bold pink-gradient-text block">PRACHI'S GALAXY</span>
+                <span class="text-[10px] text-pink-300/70 tracking-widest uppercase">Created by Vishal</span>
+            </div>
+        </div>
+        <div class="flex items-center space-x-4">
+            <button onclick="toggleAudio()" id="audio-btn" class="bg-pink-500/20 hover:bg-pink-500/40 border border-pink-500/40 px-4 py-2 rounded-full text-xs font-semibold tracking-wider transition flex items-center space-x-2 text-pink-200">
+                <i class="fa-solid fa-music text-pink-400"></i>
+                <span id="audio-label">Play Galaxy Music 🎵</span>
+            </button>
+            <button onclick="triggerCosmicCelebration()" class="hidden sm:flex bg-gradient-to-r from-pink-500 to-rose-600 text-white px-5 py-2 rounded-full text-xs font-semibold shadow-lg shadow-pink-500/30 transition transform hover:scale-105">
+                Celebrate ✨
+            </button>
+        </div>
+    </header>
 
-      <button id="surpriseBtn">Open Your Surprise 🎁</button>
-      <p class="signature">Made with ❤️ by <strong>Vishal</strong></p>
+    <!-- Hero Section -->
+    <section class="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <div class="max-w-5xl mx-auto space-y-8">
+            <div class="inline-block px-6 py-2 rounded-full glass-card border border-pink-500/30 text-pink-300 text-xs sm:text-sm tracking-[0.3em] uppercase floating-badge">
+                ✦ Ultra-Luxury Midnight Pink Galaxy Edition ✦
+            </div>
+            
+            <h1 class="font-cinzel text-6xl sm:text-8xl lg:text-9xl font-extrabold tracking-tight pink-gradient-text pink-glow leading-none">
+                Happy Birthday, <br/><span class="italic font-normal text-white">Prachi ✨</span>
+            </h1>
+            
+            <p class="font-brush text-3xl sm:text-4xl text-rose-200 max-w-2xl mx-auto">
+                "In an infinite cosmos of ordinary stars, your radiance is my entire universe."
+            </p>
+
+            <p class="text-sm sm:text-base text-gray-300 max-w-xl mx-auto font-light leading-relaxed">
+                An exclusive, cinematic birthday tribute lovingly curated and designed with absolute devotion by <span class="text-pink-400 font-semibold">Vishal</span>.
+            </p>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#gallery" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 text-white font-semibold transition shadow-2xl shadow-pink-500/40 transform hover:-translate-y-1 flex items-center justify-center space-x-2">
+                    <span>Explore Prachi's Gallery</span>
+                    <i class="fa-solid fa-arrow-down ml-1"></i>
+                </a>
+                <a href="#letter" class="w-full sm:w-auto px-8 py-4 rounded-full border border-pink-500/30 bg-pink-500/10 text-pink-200 hover:bg-pink-500/20 transition backdrop-blur-md flex items-center justify-center space-x-2">
+                    <span>Read Vishal's Letter 💌</span>
+                </a>
+            </div>
+        </div>
     </section>
 
-    <section class="message">
-      <div class="envelope">💌</div>
-      <p class="small-title">A SPECIAL MESSAGE</p>
-      <h2>Ek khaas insaan ke liye</h2>
-      <p>
-        Tumhari zindagi ka har din khushiyon se bhara rahe.
-        Tumhare saare sapne poore hon, chehre par hamesha
-        muskurahat rahe aur zindagi tumhe har woh khushi de
-        jiske tum haqdaar ho.
-      </p>
-      <h3>Dil se, Vishal ❤️</h3>
+    <!-- Stunning Photo Gallery Section (Displaying exactly the 5 photos requested) -->
+    <section id="gallery" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16 space-y-3">
+            <span class="text-pink-400 uppercase tracking-widest text-xs font-semibold block">Curated Masterpieces by Vishal</span>
+            <h2 class="font-cinzel text-3xl sm:text-5xl font-bold pink-gradient-text">Prachi's Celestial Gallery</h2>
+            <p class="text-gray-400 text-sm max-w-md mx-auto">Click any portrait to inspect in high-resolution cosmic lightbox view.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Photo 1: 1000506719_3.jpg -->
+            <div class="glass-card group rounded-3xl overflow-hidden border border-pink-500/30 shadow-2xl transition duration-500 hover:-translate-y-2 cursor-pointer" onclick="openLightbox('1000506719_3.jpg', 'Cafe Evening Elegance', 'Immaculate black mesh styling, soft curls, and exquisite cafe ambiance.')">
+                <div class="h-96 overflow-hidden relative">
+                    <img src="1000506719_3.jpg" alt="Prachi Cafe Chic" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" onerror="this.src='https://placehold.co/600x800/120710/f43f5e?text=Prachi+Cafe+Vibe'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/20 to-transparent opacity-80 group-hover:opacity-50 transition"></div>
+                    <span class="absolute top-4 right-4 bg-midnight/80 backdrop-blur-md px-3 py-1 rounded-full text-xs text-pink-300 border border-pink-500/30">🎀 Café Chic</span>
+                </div>
+                <div class="p-6 relative -mt-20">
+                    <h3 class="font-cinzel text-xl font-bold text-white mb-1">Cafe Elegance</h3>
+                    <p class="text-gray-300 text-sm font-light">Breathtaking poise under warm ambient lighting.</p>
+                </div>
+            </div>
+
+            <!-- Photo 2: 1000506718_3.jpg -->
+            <div class="glass-card group rounded-3xl overflow-hidden border border-pink-500/30 shadow-2xl transition duration-500 hover:-translate-y-2 cursor-pointer" onclick="openLightbox('1000506718_3.jpg', 'Glamorous Velvet Look', 'Radiant elegance in a sleek black velvet dress capturing pure luxury.')">
+                <div class="h-96 overflow-hidden relative">
+                    <img src="1000506718_3.jpg" alt="Prachi Velvet Glamour" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" onerror="this.src='https://placehold.co/600x800/120710/f43f5e?text=Prachi+Velvet+Glamour'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/20 to-transparent opacity-80 group-hover:opacity-50 transition"></div>
+                    <span class="absolute top-4 right-4 bg-midnight/80 backdrop-blur-md px-3 py-1 rounded-full text-xs text-rose-300 border border-rose-500/30">✨ High Glamour</span>
+                </div>
+                <div class="p-6 relative -mt-20">
+                    <h3 class="font-cinzel text-xl font-bold text-white mb-1">Velvet Radiance</h3>
+                    <p class="text-gray-300 text-sm font-light">Exuding absolute royalty and majestic charm.</p>
+                </div>
+            </div>
+
+            <!-- Photo 3: 1000506717_2.jpg -->
+            <div class="glass-card group rounded-3xl overflow-hidden border border-pink-500/30 shadow-2xl transition duration-500 hover:-translate-y-2 cursor-pointer" onclick="openLightbox('1000506717_2.jpg', 'Maroon Dress & Yellow Blooms', 'Graceful portrait holding bright yellow flowers amongst lush green foliage.')">
+                <div class="h-96 overflow-hidden relative">
+                    <img src="1000506717_2.jpg" alt="Prachi with Flowers" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" onerror="this.src='https://placehold.co/600x800/120710/f43f5e?text=Prachi+Nature'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/20 to-transparent opacity-80 group-hover:opacity-50 transition"></div>
+                    <span class="absolute top-4 right-4 bg-midnight/80 backdrop-blur-md px-3 py-1 rounded-full text-xs text-pink-300 border border-pink-500/30">🌸 Floral Grace</span>
+                </div>
+                <div class="p-6 relative -mt-20">
+                    <h3 class="font-cinzel text-xl font-bold text-white mb-1">Floral Harmony</h3>
+                    <p class="text-gray-300 text-sm font-light">Blooming with natural beauty and vibrant warmth.</p>
+                </div>
+            </div>
+
+            <!-- Photo 4: 1000506716_3.jpg -->
+            <div class="glass-card group rounded-3xl overflow-hidden border border-pink-500/30 shadow-2xl transition duration-500 hover:-translate-y-2 cursor-pointer" onclick="openLightbox('1000506716_3.jpg', 'Casual Chic & Shrug Style', 'Effortless style in white crop top, ripped denim, and wine patterned shrug.')">
+                <div class="h-96 overflow-hidden relative">
+                    <img src="1000506716_3.jpg" alt="Prachi Casual" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" onerror="this.src='https://placehold.co/600x800/120710/f43f5e?text=Prachi+Casual'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/20 to-transparent opacity-80 group-hover:opacity-50 transition"></div>
+                    <span class="absolute top-4 right-4 bg-midnight/80 backdrop-blur-md px-3 py-1 rounded-full text-xs text-rose-300 border border-rose-500/30">☕ Casual Chic</span>
+                </div>
+                <div class="p-6 relative -mt-20">
+                    <h3 class="font-cinzel text-xl font-bold text-white mb-1">Effortless Trend</h3>
+                    <p class="text-gray-300 text-sm font-light">Combining relaxed comfort with high-end aesthetic goals.</p>
+                </div>
+            </div>
+
+            <!-- Photo 5: 1000506714_3.jpg -->
+            <div class="glass-card group rounded-3xl overflow-hidden sm:col-span-2 lg:col-span-2 border border-pink-500/30 shadow-2xl transition duration-500 hover:-translate-y-2 cursor-pointer" onclick="openLightbox('1000506714_3.jpg', 'Ethnic Royalty & Traditional Jhumkas', 'Stunning traditional white ethnic suit paired with silver jhumkas and bangles.')">
+                <div class="h-96 overflow-hidden relative">
+                    <img src="1000506714_3.jpg" alt="Prachi Ethnic Suit" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-700" onerror="this.src='https://placehold.co/1200x800/120710/f43f5e?text=Prachi+Ethnic+Royalty'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/20 to-transparent opacity-80 group-hover:opacity-50 transition"></div>
+                    <span class="absolute top-4 right-4 bg-midnight/80 backdrop-blur-md px-3 py-1 rounded-full text-xs text-pink-300 border border-pink-500/30">💫 Ethnic Queen</span>
+                </div>
+                <div class="p-6 relative -mt-20">
+                    <h3 class="font-cinzel text-xl font-bold text-white mb-1">Ethnic Royalty</h3>
+                    <p class="text-gray-300 text-sm font-light">Captivating traditional charm with timeless grace and sparkling jhumkas.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="gallery" id="memories">
-      <p class="small-title">YOUR SPECIAL MOMENTS</p>
-      <h2>Beautiful Memories 📸</h2>
-      <p class="gallery-text">Kuch yaadein hamesha khaas hoti hain.</p>
-
-      <div class="photos">
-        <img src="assets/photo-1.jpg" alt="Memory 1">
-        <img src="assets/photo-2.jpg" alt="Memory 2">
-        <img src="assets/photo-3.jpg" alt="Memory 3">
-        <img src="assets/photo-4.jpg" alt="Memory 4">
-        <img src="assets/photo-5.jpg" alt="Memory 5">
-        <img src="assets/photo-6.jpg" alt="Memory 6">
-      </div>
+    <!-- Vishal's Personal Love Letter Section -->
+    <section id="letter" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        <div class="glass-card border border-pink-500/30 rounded-3xl p-8 sm:p-14 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 text-9xl opacity-5 pointer-events-none font-cinzel">Vishal</div>
+            <div class="text-center max-w-2xl mx-auto space-y-6">
+                <span class="text-pink-400 uppercase tracking-widest text-xs font-semibold block">Heartfelt Dedication</span>
+                <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white">A Personal Letter from Vishal</h2>
+                
+                <div class="space-y-4 text-gray-200 text-base sm:text-lg font-light leading-relaxed text-left bg-midnight/70 p-6 sm:p-8 rounded-2xl border border-pink-500/20">
+                    <p class="font-brush text-3xl text-rose-300">Dearest Prachi,</p>
+                    <p>
+                        Is midnight pink galaxy ki anant gehrayiyon me, maine yeh grand website sirf aur sirf aapke liye tayar ki hai. Aapka hona is duniya ko aur bhi zyada khoobsurat aur roshan banata hai.
+                    </p>
+                    <p>
+                        Chahe aap cafe me apne chic look me hon, ya ethnic wear me dazzling grace dikha rahi hon—aapka har andaz mere liye ek precious moment hai. May this special day bring you limitless joy, success, and all the love your heart can hold.
+                    </p>
+                    <p class="text-right font-brush text-3xl text-pink-300 pt-4">
+                        With all my heart,<br/>
+                        <span class="font-cinzel font-bold text-white text-lg tracking-wider">— Vishal ✨</span>
+                    </p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="last-wish">
-      <div class="stars">✦ ✧ ♡ ✧ ✦</div>
-      <h2>Make a Wish! 🎂</h2>
-      <p>Wishing you a beautiful year full of love and happiness.</p>
-      <button id="wishBtn">Send Birthday Love ❤️</button>
+    <!-- Interactive Birthday Cake Cutting Simulator -->
+    <section id="cake" class="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
+        <div class="glass-card border border-pink-500/30 rounded-3xl p-8 sm:p-14 shadow-2xl relative overflow-hidden">
+            <span class="text-pink-300 uppercase tracking-widest text-xs font-semibold block mb-2">Cosmic Celebration Ritual</span>
+            <h2 class="font-cinzel text-3xl sm:text-5xl font-bold pink-gradient-text mb-4">Cut Prachi's Birthday Cake!</h2>
+            <p class="text-gray-300 text-sm sm:text-base max-w-xl mx-auto mb-10">
+                Click below to blow out the magical candles, make a cosmic wish, and trigger Vishal's celebration!
+            </p>
+
+            <!-- Cake Graphic -->
+            <div class="relative w-64 h-64 mx-auto mb-10 flex items-center justify-center">
+                <div class="absolute bottom-4 w-48 h-32 bg-gradient-to-r from-pink-600 via-rose-600 to-purple-700 rounded-2xl shadow-2xl flex flex-col items-center justify-center border-2 border-pink-300/40">
+                    <div class="w-full h-4 bg-white/20 mb-2"></div>
+                    <div class="text-white font-cinzel font-bold text-xs tracking-widest">HBD PRACHI</div>
+                    <div class="text-[10px] text-pink-200 font-medium">By Vishal</div>
+                    <div class="w-full h-4 bg-white/20 mt-2"></div>
+                </div>
+                <!-- Candles -->
+                <div id="candles-container" class="absolute -top-4 flex space-x-6">
+                    <div class="flex flex-col items-center">
+                        <div id="flame-1" class="w-4 h-6 bg-amber-400 rounded-full animate-bounce filter drop-shadow-[0_0_12px_#fde047]"></div>
+                        <div class="w-2 h-10 bg-white/90 rounded-t"></div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div id="flame-2" class="w-4 h-6 bg-amber-400 rounded-full animate-bounce filter drop-shadow-[0_0_12px_#fde047]" style="animation-delay: 0.2s;"></div>
+                        <div class="w-2 h-10 bg-white/90 rounded-t"></div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div id="flame-3" class="w-4 h-6 bg-amber-400 rounded-full animate-bounce filter drop-shadow-[0_0_12px_#fde047]" style="animation-delay: 0.4s;"></div>
+                        <div class="w-2 h-10 bg-white/90 rounded-t"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="cutCake()" id="cake-btn" class="px-8 py-4 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 text-white font-bold text-base hover:opacity-90 transition transform hover:scale-105 shadow-xl shadow-pink-500/40">
+                🌬️ Blow Candles & Cut Cake!
+            </button>
+            <div id="wish-status" class="mt-4 text-sm font-medium text-pink-300 h-6 font-cinzel"></div>
+        </div>
     </section>
-  </main>
 
-  <footer>
-    Crafted with ❤️ by <strong>Vishal</strong>
-  </footer>
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-pink-500/20 py-12 px-4 text-center text-gray-400 text-xs sm:text-sm tracking-wider">
+        <div class="flex items-center justify-center space-x-2 mb-2">
+            <span class="text-xl">💖</span>
+            <span class="font-cinzel font-bold text-gray-200">Crafted with Absolute Devotion by Vishal for Prachi</span>
+        </div>
+        <p>Wishing you the most magical and extraordinary birthday ever!</p>
+    </footer>
 
-  <div id="surprise" class="popup">
-    <div class="popup-card">
-      <button id="closeBtn" class="close">×</button>
-      <div class="big-emoji">🎉🎂🎁</div>
-      <h2>Happy Birthday!</h2>
-      <p>
-        Tum hamesha khush raho, muskurate raho aur tumhari
-        zindagi khushiyon se chamakti rahe! ✨
-      </p>
-      <h3>With love, Vishal 💛</h3>
-    </div>
-  </div>
-
-  <div id="toast" class="toast"></div>
-  <script src="script.js"></script>
-</body>
-</html>
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 flex items-center justify-center bg
