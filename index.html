@@ -1,106 +1,87 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Happy Birthday | Vishal</title>
-<style>
-*{box-sizing:border-box}
-body{
- margin:0;
- font-family:Arial,sans-serif;
- color:white;
- text-align:center;
- background:linear-gradient(140deg,#170d24,#54244f,#20102e);
-}
-header{padding:65px 15px 45px}
-h1{font-size:clamp(45px,10vw,85px);color:#ffacd1}
-p{line-height:1.9}
-button{
- padding:14px 24px;border:0;border-radius:30px;
- background:linear-gradient(90deg,#ff83b7,#ffdfa4);
- color:#30132c;font-weight:bold;font-size:16px;
- cursor:pointer;
-}
-h2{color:#ffb5d7;font-size:32px}
-.gallery{
- display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
- gap:12px;padding:15px;max-width:900px;margin:auto;
-}
-.gallery img{
- width:100%;height:300px;object-fit:cover;
- border-radius:18px;border:1px solid #ffffff50;
-}
-.card{
- margin:20px auto;padding:25px;max-width:700px;
- background:#ffffff12;border:1px solid #ffffff30;
- border-radius:20px;width:90%;
-}
-#surprise{display:none;color:#ffe0ef;font-size:18px}
-footer{padding:30px;color:#ffd5e8}
-@media(max-width:480px){
- .gallery img{height:220px}
- header{padding-top:45px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#100d24">
+  <title>Happy Birthday | From Vishal</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header>
+    <div class="logo">✦ BIRTHDAY MAGIC</div>
+    <div class="sender">A surprise from Vishal 💛</div>
+  </header>
 
-<header>
- <p>✨ A SPECIAL DAY ✨</p>
- <h1>Happy<br>Birthday!</h1>
- <p>
-  आज का दिन खुशियों से भरा हो।<br>
-  आपकी हर इच्छा पूरी हो और चेहरे पर हमेशा मुस्कान रहे। 💖
- </p>
- <p>With lots of wishes, <b>Vishal</b> 💗</p>
- <button onclick="openSurprise()">
-  🎁 Open Your Surprise
- </button>
- <div class="card" id="surprise">
-  🎂 जन्मदिन की ढेर सारी शुभकामनाएँ!<br>
-  आपकी जिंदगी प्यार, खुशियों और सफलता से भरी रहे।<br>
-  हमेशा मुस्कुराते रहिए! 💖<br><br>
-  — Vishal ✨
- </div>
-</header>
+  <main>
+    <section class="hero">
+      <span class="badge">✨ TODAY IS YOUR SPECIAL DAY ✨</span>
+      <h1>Happy Birthday!</h1>
+      <p class="subtitle">
+        Aaj ka din khushiyon, pyaar aur khoobsurat yaadon se bhar jaaye.
+      </p>
 
-<section>
- <h2>💖 Beautiful Memories 💖</h2>
- <p>कुछ प्यारी तस्वीरें, इस खास दिन के नाम।</p>
+      <div class="cake">🎂</div>
 
- <div class="gallery">
-  <img src="photo-1.jpg" alt="Memory 1">
-  <img src="photo-2.jpg" alt="Memory 2">
-  <img src="photo-3.jpg" alt="Memory 3">
-  <img src="photo-4.jpg" alt="Memory 4">
-  <img src="photo-5.jpg" alt="Memory 5">
-  <img src="photo-6.jpg" alt="Memory 6">
- </div>
-</section>
+      <button id="surpriseBtn">Open Your Surprise 🎁</button>
+      <p class="signature">Made with ❤️ by <strong>Vishal</strong></p>
+    </section>
 
-<section class="card">
- <h2>💌 A Special Wish</h2>
- <p>
-  दुआ है कि आपकी जिंदगी में हमेशा खुशियों के रंग रहें।
-  हर नया दिन नई उम्मीद लेकर आए और आपके सारे सपने
-  पूरे हों। आज का दिन आपके लिए बहुत खास हो! 🎉
- </p>
- <h3>Made with ❤️ by Vishal</h3>
-</section>
+    <section class="message">
+      <div class="envelope">💌</div>
+      <p class="small-title">A SPECIAL MESSAGE</p>
+      <h2>Ek khaas insaan ke liye</h2>
+      <p>
+        Tumhari zindagi ka har din khushiyon se bhara rahe.
+        Tumhare saare sapne poore hon, chehre par hamesha
+        muskurahat rahe aur zindagi tumhe har woh khushi de
+        jiske tum haqdaar ho.
+      </p>
+      <h3>Dil se, Vishal ❤️</h3>
+    </section>
 
-<footer>
- Made with love 💗 | Birthday Wishes by Vishal
-</footer>
+    <section class="gallery" id="memories">
+      <p class="small-title">YOUR SPECIAL MOMENTS</p>
+      <h2>Beautiful Memories 📸</h2>
+      <p class="gallery-text">Kuch yaadein hamesha khaas hoti hain.</p>
 
-<script>
-function openSurprise(){
- document.getElementById("surprise").style.display="block";
- document.getElementById("surprise").scrollIntoView({
-  behavior:"smooth",block:"center"
- });
-}
-</script>
+      <div class="photos">
+        <img src="assets/photo-1.jpg" alt="Memory 1">
+        <img src="assets/photo-2.jpg" alt="Memory 2">
+        <img src="assets/photo-3.jpg" alt="Memory 3">
+        <img src="assets/photo-4.jpg" alt="Memory 4">
+        <img src="assets/photo-5.jpg" alt="Memory 5">
+        <img src="assets/photo-6.jpg" alt="Memory 6">
+      </div>
+    </section>
 
+    <section class="last-wish">
+      <div class="stars">✦ ✧ ♡ ✧ ✦</div>
+      <h2>Make a Wish! 🎂</h2>
+      <p>Wishing you a beautiful year full of love and happiness.</p>
+      <button id="wishBtn">Send Birthday Love ❤️</button>
+    </section>
+  </main>
+
+  <footer>
+    Crafted with ❤️ by <strong>Vishal</strong>
+  </footer>
+
+  <div id="surprise" class="popup">
+    <div class="popup-card">
+      <button id="closeBtn" class="close">×</button>
+      <div class="big-emoji">🎉🎂🎁</div>
+      <h2>Happy Birthday!</h2>
+      <p>
+        Tum hamesha khush raho, muskurate raho aur tumhari
+        zindagi khushiyon se chamakti rahe! ✨
+      </p>
+      <h3>With love, Vishal 💛</h3>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
 </body>
 </html>
