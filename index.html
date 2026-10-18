@@ -295,3 +295,100 @@
 
     <!-- Lightbox Modal -->
     <div id="lightbox-modal" class="fixed inset-0 z-50 flex items-center justify-center bg
+
+            <div id="lightbox-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md hidden p-4">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl font-bold bg-white/10 hover:bg-white/20 w-12 h-12 rounded-full flex items-center justify-center transition-all z-10">×</button>
+        <div class="relative max-w-4xl max-h-[90vh] flex items-center justify-center">
+            <img id="lightbox-img" src="" alt="Zoomed Memory" class="max-w-full max-h-[85vh] object-contain rounded-2xl border border-pink-500/40 shadow-2xl">
+        </div>
+    </div>
+
+    <!-- JavaScript Interactivity Engine -->
+    <script>
+        // Starry Background Generation
+        const starsContainer = document.getElementById('starsContainer');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            star.style.animationDelay = (Math.random() * 5) + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Lightbox Functions
+        function openLightbox(imgSrc) {
+            const modal = document.getElementById('lightbox-modal');
+            const modalImg = document.getElementById('lightbox-img');
+            modalImg.src = imgSrc;
+            modal.classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+        }
+
+        // Cake Cutting & Candle Blowing Simulator
+        function cutCake() {
+            const flame1 = document.getElementById('flame-1');
+            const flame2 = document.getElementById('flame-2');
+            const flame3 = document.getElementById('flame-3');
+            const cakeBtn = document.getElementById('cake-btn');
+            const wishStatus = document.getElementById('wish-status');
+
+            if (flame1) flame1.style.display = 'none';
+            if (flame2) flame2.style.display = 'none';
+            if (flame3) flame3.style.display = 'none';
+
+            if (cakeBtn) cakeBtn.style.display = 'none';
+            if (wishStatus) {
+                wishStatus.innerHTML = "✨ Candles Blown! Make a wish, Prachi! May all your dreams come true! 💖";
+            }
+
+            // Trigger celebration floating hearts
+            for (let i = 0; i < 6; i++) {
+                setTimeout(() => {
+                    createFloatingHeart();
+                }, i * 300);
+            }
+        }
+
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '💖';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.bottom = '100px';
+            heart.style.fontSize = '2.5rem';
+            heart.style.zIndex = '9999';
+            heart.style.transition = 'all 2s ease-out';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.style.transform = 'translateY(-350px) scale(1.6)';
+                heart.style.opacity = '0';
+            }, 50);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 2000);
+        }
+
+        // Audio Toggle Simulator
+        let isPlaying = false;
+        function toggleMusic() {
+            const btnText = document.getElementById('music-text');
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                btnText.innerText = "Playing Symphony 🎶";
+            } else {
+                btnText.innerText = "Play Music";
+            }
+        }
+    </script>
+</body>
+</html>
+
